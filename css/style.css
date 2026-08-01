@@ -106,13 +106,7 @@ h1, h2, h3, h4 {
   font-weight: 700;
   letter-spacing: -0.01em;
   text-wrap: balance;
-  color: var(--gold-dark);
-  background: var(--gold-metallic);
-  background-size: 200% 200%;
-  background-position: 50% 50%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--brown);
 }
 
 :focus-visible {
@@ -183,7 +177,13 @@ h1, h2, h3, h4 {
   font-weight: 600;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--gold-dark);
+  color: var(--brown);
+}
+
+/* on the dark page-header banner, the light-background brown default above
+   would be nearly invisible against the dark gradient — needs white instead */
+.page-header .eyebrow {
+  color: var(--white);
 }
 
 .eyebrow::before {
@@ -348,10 +348,10 @@ h1, h2, h3, h4 {
   animation: loaderPulse 1.6s ease-in-out infinite;
 }
 
-.page-loader__mark svg {
-  width: 30px;
-  height: 30px;
-  color: var(--gold);
+.page-loader__mark img {
+  height: 36px;
+  width: auto;
+  display: block;
 }
 
 @keyframes loaderPulse {
@@ -632,13 +632,7 @@ body.nav-open {
 
 .hero-headline__rotator {
   display: inline-block;
-  color: var(--gold-dark);
-  background: var(--gold-metallic);
-  background-size: 200% 200%;
-  background-position: 50% 50%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--white);
   transition: opacity 0.35s ease;
   /* force its own stable, permanently-promoted GPU layer so its recurring
      opacity fade can never bleed a stray "ghost" of the new word into a
@@ -750,10 +744,12 @@ body.nav-open {
 .trust__items {
   display: flex;
   align-items: center;
-  gap: 2.6rem;
+  gap: 1.4rem 2.6rem;
   flex-wrap: wrap;
   color: var(--brown);
   opacity: 0.55;
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .trust__items span {
@@ -766,9 +762,14 @@ body.nav-open {
 }
 
 .trust__items svg {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   color: var(--gold-dark);
+  flex: none;
+  padding: 7px;
+  box-sizing: content-box;
+  background: var(--card-bg);
+  border-radius: 50%;
 }
 
 /* ---------- Stats section ---------- */
@@ -1087,13 +1088,18 @@ body.nav-open {
   margin-top: auto;
   font-size: 0.9rem;
   font-weight: 600;
-  color: var(--gold-dark);
+  color: var(--brown);
+  transition: color 0.2s ease;
 }
 
 .carousel__link svg {
   width: 15px;
   height: 15px;
   transition: transform 0.2s ease;
+}
+
+.carousel__card:hover .carousel__link {
+  color: var(--gold-dark);
 }
 
 .carousel__card:hover .carousel__link svg {
@@ -1199,20 +1205,25 @@ body.nav-open {
   opacity: 0;
 }
 
-/* h1-h4 paint their gold gradient via background-clip:text; when the heading's
-   actual text lives inside a nested .reveal-mask (reveal-on-scroll wrapper) the
-   ancestor has no text of its own to clip to, so the gradient must repaint here. */
+/* h1-h4 paint their color directly; when the heading's actual text lives
+   inside a nested .reveal-mask (reveal-on-scroll wrapper) the ancestor has
+   no text of its own to inherit to, so the color must repaint here. */
 h1 .reveal-mask,
 h2 .reveal-mask,
 h3 .reveal-mask,
 h4 .reveal-mask {
-  color: var(--gold-dark);
-  background: var(--gold-metallic);
-  background-size: 200% 200%;
-  background-position: 50% 50%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--brown);
+}
+
+/* headings that sit on a dark brown background need white, not the
+   light-background brown default above — covers both plain headings and
+   ones whose text lives inside a nested .reveal-mask wrapper. */
+.hero-headline,
+.hero-headline .reveal-mask,
+.page-header h1,
+.page-header h1 .reveal-mask,
+.final-cta h2 {
+  color: var(--white);
 }
 
 .reveal-text .reveal-mask {
@@ -1296,9 +1307,9 @@ h4 .reveal-mask {
 }
 
 .stats-bar__item:hover .stats-bar__icon {
-  color: var(--gold-dark);
+  color: var(--brown-light);
   transform: translateY(-3px);
-  box-shadow: 0 0 0 1px rgba(212, 166, 58, 0.5), 0 0 18px rgba(212, 166, 58, 0.45);
+  box-shadow: 0 0 0 1px rgba(75, 46, 31, 0.5), 0 0 18px rgba(75, 46, 31, 0.35);
 }
 
 .stats-bar__item:hover .stats-bar__number {
@@ -1311,7 +1322,7 @@ h4 .reveal-mask {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--gold-dark);
+  color: var(--brown);
   transition: transform 0.25s ease, box-shadow 0.25s ease, color 0.25s ease;
 }
 
@@ -1332,13 +1343,7 @@ h4 .reveal-mask {
   font-weight: 700;
   font-variant-numeric: tabular-nums;
   direction: ltr;
-  color: var(--gold-dark);
-  background: var(--gold-metallic);
-  background-size: 200% 200%;
-  background-position: 50% 50%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--brown);
   transition: transform 0.25s ease;
 }
 
@@ -1973,6 +1978,11 @@ body.popup-open {
 .about-story__badge {
   width: 280px;
   height: 280px;
+}
+
+.about-story__badge img {
+  width: 175px;
+  height: auto;
 }
 
 /* ---------- Vision & Mission (About) ---------- */

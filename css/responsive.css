@@ -97,15 +97,31 @@
     max-width: none;
   }
 
-  /* kept side-by-side (same structure as desktop) per explicit request —
-     just tighter gap/ratio so it still fits a phone width. */
+  /* a squeezed 2-column mirror of the desktop layout was tried here and
+     turned out too cramped/broken at phone widths — stacked reads far
+     more cleanly and still feels premium with generous spacing. */
   .consult-promo__grid {
-    grid-template-columns: 1.15fr 0.85fr;
-    gap: 1.2rem;
+    grid-template-columns: 1fr;
+    gap: 2.2rem;
+    text-align: center;
   }
 
   .consult-promo__benefits {
-    gap: 0.6rem 0.8rem;
+    justify-items: start;
+    gap: 0.9rem 1rem;
+  }
+
+  .consult-promo__visual {
+    order: -1;
+  }
+
+  .consult-promo__actions {
+    justify-content: center;
+  }
+
+  .consult-promo__actions .btn {
+    width: 100%;
+    justify-content: center;
   }
 
   .grid-2,
