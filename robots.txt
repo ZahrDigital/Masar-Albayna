@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://masaralbayna.com/sitemap.xml
